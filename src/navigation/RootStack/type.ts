@@ -1,9 +1,16 @@
+import { ISpecialist } from '~store/slices/specialistsSlice.ts';
+import { IAnswer } from '~store/slices/answersSlice.ts';
+
 export enum RootStackNavigationName {
-    SPECIALISTS = 'Специалисты',
-    ANSWERS = 'Ответы',
+    MAIN = 'Консультации',
+    CONSULTATION = 'Консультация',
+    PROFILE = 'Профайл',
+    CHAT = 'Чат',
 }
 
 export type RootStackParamList = {
-    [RootStackNavigationName.SPECIALISTS]: undefined;
-    [RootStackNavigationName.ANSWERS]: undefined;
+    [RootStackNavigationName.MAIN]: undefined;
+    [RootStackNavigationName.CONSULTATION]: undefined;
+    [RootStackNavigationName.PROFILE]: { item: ISpecialist };
+    [RootStackNavigationName.CHAT]: { item: IAnswer };
 };

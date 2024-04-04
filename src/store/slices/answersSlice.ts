@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface IAnswer {
+    id: string;
     name: string;
     experience: string;
     education: string;

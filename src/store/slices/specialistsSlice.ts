@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface ISpecialist {
+    id: string;
     name: string;
     experience: string;
     education: string;
     avatar: string;
+    about: string;
 }
 
 export type SpecialistsState = {
