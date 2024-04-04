@@ -7,6 +7,7 @@ export interface ISpecialist {
     education: string;
     avatar: string;
     about: string;
+    shortDescription: string;
 }
 
 export type SpecialistsState = {

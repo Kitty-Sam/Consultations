@@ -1,16 +1,19 @@
 import { width } from '~constants/dimensions.ts';
 import { theme } from '~constants/theme.ts';
-import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-export type AnswersStyleType = {
-    container: ViewStyle;
-    image: ImageStyle;
-    textWrapper: ViewStyle;
-    topicWrapper: ViewStyle;
-    wrapper: ViewStyle;
-};
-
-export const styles = StyleSheet.create<AnswersStyleType>({
+export const styles = StyleSheet.create({
+    rootWrapper: { flex: 1 },
+    wrapper: {
+        display: 'flex',
+        alignItems: 'center',
+        flex: 1,
+    },
+    title: {
+        marginVertical: 28,
+        marginHorizontal: 14,
+        fontSize: 16,
+    },
     container: {
         width: width - 28,
         marginBottom: 14,
@@ -35,8 +38,16 @@ export const styles = StyleSheet.create<AnswersStyleType>({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    wrapper: {
-        display: 'flex',
-        alignItems: 'center',
+    bold: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: theme.TITLE_COLOR,
+    },
+    secondary: {
+        fontSize: 14,
+        color: theme.TEXT_COLOR,
+    },
+    topic: {
+        fontSize: 18,
     },
 });

@@ -4,6 +4,7 @@ import { ProfileScreen } from '~screens/ProfileScreen';
 import { Consultations } from '~screens/Consultations';
 import { ConsultationStack } from '~navigation/ConsultationStack';
 import { RootStackNavigationName, RootStackParamList } from '~navigation/RootStack/type.ts';
+import { AskScreen } from '~screens/AskScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 export const RootStack = () => {
@@ -27,6 +28,13 @@ export const RootStack = () => {
             <Stack.Screen
                 name={RootStackNavigationName.PROFILE}
                 component={ProfileScreen}
+                options={{
+                    headerBackTitleVisible: false,
+                }}
+            />
+            <Stack.Screen
+                name={RootStackNavigationName.ASK}
+                component={AskScreen}
                 options={{
                     headerBackTitleVisible: false,
                 }}

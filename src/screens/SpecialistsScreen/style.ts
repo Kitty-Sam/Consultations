@@ -1,18 +1,18 @@
-import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 import { width } from '~constants/dimensions.ts';
 import { theme } from '~constants/theme.ts';
 
-export type ScreenStyleType = {
-    wrapper: ViewStyle;
-    textWrapper: ViewStyle;
-    container: ViewStyle;
-    image: ImageStyle;
-};
-
-export const styles = StyleSheet.create<ScreenStyleType>({
+export const styles = StyleSheet.create({
+    rootWrapper: { flex: 1 },
     wrapper: {
         display: 'flex',
         alignItems: 'center',
+        flex: 1,
+    },
+    title: {
+        marginVertical: 28,
+        marginHorizontal: 14,
+        fontSize: 16,
     },
     container: {
         width: width - 28,
@@ -33,5 +33,14 @@ export const styles = StyleSheet.create<ScreenStyleType>({
     textWrapper: {
         flexDirection: 'row',
         gap: 14,
+    },
+    bold: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: theme.TITLE_COLOR,
+    },
+    secondary: {
+        fontSize: 14,
+        color: theme.TEXT_COLOR,
     },
 });

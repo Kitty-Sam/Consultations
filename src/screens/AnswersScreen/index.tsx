@@ -1,14 +1,13 @@
 import React, { FC, useCallback } from 'react';
 import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from '~screens/AnswersScreen/style.ts';
 import { IAnswer } from '~store/slices/answersSlice.ts';
 import { ETopic } from '~src/enums/topic.ts';
-import { useNavigation } from '@react-navigation/native';
-import { ISpecialist } from '~store/slices/specialistsSlice.ts';
 import { RootStackNavigationName, RootStackParamList } from '~navigation/RootStack/type.ts';
-import { MaterialTopTabScreenProps } from '@react-navigation/material-top-tabs';
-import { ConsultationStackNavigationName } from '~navigation/ConsultationStack/type.ts';
+import { MaterialTopTabNavigationProp, MaterialTopTabScreenProps } from '@react-navigation/material-top-tabs';
+import { ConsultationParamList, ConsultationStackNavigationName } from '~navigation/ConsultationStack/type.ts';
+import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const answersData: IAnswer[] = [
     {
@@ -37,13 +36,13 @@ const answersData: IAnswer[] = [
     },
 ];
 
-export const AnswersScreen: FC<
-    MaterialTopTabScreenProps<
-        RootStackParamList,
-        RootStackNavigationName.CONSULTATION,
-        ConsultationStackNavigationName.ANSWERS
-    >
-> = ({ navigation }) => {
+type AnswersScreenNavigationProp = CompositeNavigationProp<
+    MaterialTopTabNavigationProp<ConsultationParamList, ConsultationStackNavigationName.ANSWERS>,
+    StackNavigationProp<RootStackParamList>
+>;
+
+export const AnswersScreen = () => {
+    const navigation = useNavigation<AnswersScreenNavigationProp>();
     const onAnswerPress = (item: IAnswer) => () => {
         navigation.navigate(RootStackNavigationName.CHAT, { item });
     };
@@ -56,16 +55,16 @@ export const AnswersScreen: FC<
                     <Image source={{ uri: avatar }} style={styles.image} />
 
                     <View>
-                        <Text>{name}</Text>
-                        <Text>{experience}</Text>
-                        <Text>{education}</Text>
+                        <Text style={styles.bold}>{name}</Text>
+                        <Text style={styles.secondary}>{experience}</Text>
+                        <Text style={styles.secondary}>{education}</Text>
                     </View>
                 </View>
 
                 {topic ? (
                     <View style={styles.topicWrapper}>
-                        <Text style={{ fontSize: 18 }}>
-                            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Тема</Text> {item.topic}
+                        <Text style={styles.topic}>
+                            <Text style={styles.bold}>Тема</Text> {item.topic}
                         </Text>
                         <Text>{'>'}</Text>
                     </View>
@@ -77,13 +76,11 @@ export const AnswersScreen: FC<
     }, []);
 
     return (
-        <SafeAreaView>
-            <Text>Ответы</Text>
+        <View style={styles.rootWrapper}>
+            <Text style={styles.title}>Ответы</Text>
             <View style={styles.wrapper}>
-                <View>
-                    <FlatList data={answersData} renderItem={renderAnswerItem} />
-                </View>
+                <FlatList data={answersData} renderItem={renderAnswerItem} />
             </View>
-        </SafeAreaView>
+        </View>
     );
 };

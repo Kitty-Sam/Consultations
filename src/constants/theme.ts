@@ -4,4 +4,5 @@ export const theme = {
     BUTTON_COLOR: '#894AFF',
     SPEC_BUBBLE_COLOR: '#5F5C79',
     USER_BUBBLE_COLOR: '#BDBDBD',
+    DIVIDER: '#DCDCDC',
 };
