@@ -3,6 +3,21 @@ import { width } from '~constants/dimensions.ts';
 import { theme } from '~constants/theme.ts';
 
 export const styles = StyleSheet.create({
+    btn: {
+        width: width - 28,
+        backgroundColor: theme.BUTTON_COLOR,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 16,
+        position: 'absolute',
+        bottom: 30,
+    },
+
+    btnText: {
+        marginVertical: 12,
+        color: 'white',
+    },
+
     rootWrapper: { marginHorizontal: 16, flex: 1, position: 'relative' },
     textWrapper: { alignItems: 'center', minHeight: '30%', justifyContent: 'space-between' },
     image: {
@@ -38,19 +53,5 @@ export const styles = StyleSheet.create({
     about: {
         fontWeight: 'bold',
         marginVertical: 20,
-    },
-    btn: {
-        width: width - 28,
-        backgroundColor: theme.BUTTON_COLOR,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 16,
-        position: 'absolute',
-        bottom: 30,
-    },
-
-    btnText: {
-        marginVertical: 12,
-        color: 'white',
     },
 });

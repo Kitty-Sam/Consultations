@@ -1,11 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ISpecialist } from '~store/slices/specialistsSlice.ts';
 
 export interface IAnswer {
     id: string;
-    name: string;
-    experience: string;
-    education: string;
-    avatar: string;
+    user: ISpecialist;
     topic: string;
 }
 

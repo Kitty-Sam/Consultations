@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackNavigationName, RootStackParamList } from '~navigation/RootStack/type.ts';
+import { IChatMessage, RootStackNavigationName, RootStackParamList } from '~navigation/RootStack/type.ts';
 import { styles } from '~screens/ProfileScreen/style.ts';
+import { Button } from '~components/Button';
 
 export const ProfileScreen: FC<NativeStackScreenProps<RootStackParamList, RootStackNavigationName.PROFILE>> = ({
     route,
@@ -12,7 +13,10 @@ export const ProfileScreen: FC<NativeStackScreenProps<RootStackParamList, RootSt
     const { avatar, about, name, experience, education, shortDescription } = item;
 
     const addAdvicePress = () => {
-        navigation.navigate(RootStackNavigationName.ASK, { item: '123' });
+        navigation.navigate(RootStackNavigationName.ASK, {
+            chat: { id: '1', messages: [] as IChatMessage[] },
+            item,
+        });
     };
 
     return (
@@ -32,9 +36,7 @@ export const ProfileScreen: FC<NativeStackScreenProps<RootStackParamList, RootSt
                 <Text style={styles.about}>Oбо мне</Text>
                 <Text>{about}</Text>
             </ScrollView>
-            <TouchableOpacity onPress={addAdvicePress} style={styles.btn}>
-                <Text style={styles.btnText}>Посоветоваться</Text>
-            </TouchableOpacity>
+            <Button title={'Посоветоваться'} onClick={addAdvicePress} />
         </View>
     );
 };

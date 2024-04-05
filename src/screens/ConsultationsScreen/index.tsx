@@ -3,8 +3,9 @@ import { Button } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackNavigationName, RootStackParamList } from '~navigation/RootStack/type.ts';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { styles } from '~screens/ConsultationsScreen/style.ts';
 
-export const Consultations: FC<NativeStackScreenProps<RootStackParamList, RootStackNavigationName.MAIN>> = ({
+export const ConsultationsScreen: FC<NativeStackScreenProps<RootStackParamList, RootStackNavigationName.MAIN>> = ({
     navigation,
 }) => {
     const onConsultationPress = () => {
@@ -12,7 +13,7 @@ export const Consultations: FC<NativeStackScreenProps<RootStackParamList, RootSt
     };
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.rootWrapper}>
             <Button onPress={onConsultationPress} title="Go To Current Consultation"></Button>
         </SafeAreaView>
     );
