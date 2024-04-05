@@ -8,8 +8,9 @@ import { ConsultationParamList, ConsultationStackNavigationName } from '~navigat
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Card } from '~components/Card';
-import { ISpecialist } from '~store/slices/specialistsSlice.ts';
 import { answersData } from '~constants/answers.ts';
+import { useAppSelector } from '~store/store.ts';
+import { getAllAnswers } from '~store/selectors/getAllAnswers.ts';
 
 type AnswersScreenNavigationProp = CompositeNavigationProp<
     MaterialTopTabNavigationProp<ConsultationParamList, ConsultationStackNavigationName.ANSWERS>,
@@ -18,20 +19,22 @@ type AnswersScreenNavigationProp = CompositeNavigationProp<
 
 export const AnswersScreen = () => {
     const navigation = useNavigation<AnswersScreenNavigationProp>();
-    const onAnswerPress = (item: ISpecialist) => () => {
-        navigation.navigate(RootStackNavigationName.CHAT, { item });
+    const onAnswerPress = (chatId: string) => () => {
+        navigation.navigate(RootStackNavigationName.CHAT, { chatId });
     };
+
+    const allAnswers = useAppSelector(getAllAnswers);
 
     const renderAnswerItem = useCallback(({ item, index }: { item: IAnswer; index: number }) => {
         const { topic } = item;
-        return <Card onContainerPress={onAnswerPress(item.user)} item={item.user} topic={topic} />;
+        return <Card onContainerPress={onAnswerPress(item.chatId)} item={item.user} topic={topic} />;
     }, []);
 
     return (
         <View style={styles.rootWrapper}>
             <Text style={styles.title}>Ответы</Text>
             <View style={styles.wrapper}>
-                <FlatList data={answersData} renderItem={renderAnswerItem} />
+                <FlatList data={allAnswers} renderItem={renderAnswerItem} showsVerticalScrollIndicator={false} />
             </View>
         </View>
     );

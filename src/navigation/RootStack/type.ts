@@ -1,18 +1,20 @@
 import { ISpecialist } from '~store/slices/specialistsSlice.ts';
-import { NavigatorScreenParams } from '@react-navigation/native';
-import { ConsultationParamList } from '~navigation/ConsultationStack/type.ts';
+import { ETopic } from '~src/enums/topic.ts';
 
 export interface IChatMessage {
+    id: string;
     message: string;
     sentTime: any;
     sender: string;
     direction: 'incoming' | 'outgoing';
-    // position: 0 | 1 | 'normal' | 2 | 'single' | 'first' | 'last' | 3;
 }
 
 export interface IChat {
     id: string;
+    specialistId: string;
+    // userId: string;
     messages: IChatMessage[];
+    topic: ETopic;
 }
 
 export enum RootStackNavigationName {
@@ -27,6 +29,6 @@ export type RootStackParamList = {
     [RootStackNavigationName.MAIN]: undefined;
     [RootStackNavigationName.CONSULTATION]: undefined;
     [RootStackNavigationName.PROFILE]: { item: ISpecialist };
-    [RootStackNavigationName.CHAT]: { item: ISpecialist };
-    [RootStackNavigationName.ASK]: { item: ISpecialist; chat: IChat };
+    [RootStackNavigationName.CHAT]: { chatId: string };
+    [RootStackNavigationName.ASK]: { chatId?: string; specialistId?: string };
 };

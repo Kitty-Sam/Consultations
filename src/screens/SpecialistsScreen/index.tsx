@@ -8,7 +8,8 @@ import { CompositeNavigationProp, useNavigation } from '@react-navigation/native
 import { MaterialTopTabNavigationProp } from '@react-navigation/material-top-tabs';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import { Card } from '~components/Card';
-import { specialistsData } from '~constants/spesiclists.ts';
+import { useAppSelector } from '~store/store.ts';
+import { getAllSpecialists } from '~store/selectors/getAllSpecialists.ts';
 
 type SpecialistsScreenNavigationProp = CompositeNavigationProp<
     MaterialTopTabNavigationProp<ConsultationParamList, ConsultationStackNavigationName.SPECIALISTS>,
@@ -29,12 +30,14 @@ export const SpecialistsScreen = () => {
         return <Card onAvatarPress={onAvatarPress(item)} onNamePress={onNamePress(item)} item={item} />;
     }, []);
 
+    const allSpecialists = useAppSelector(getAllSpecialists);
+
     return (
         <View style={styles.rootWrapper}>
             <Text style={styles.title}>Специалисты</Text>
             <View style={styles.wrapper}>
                 <FlatList
-                    data={specialistsData}
+                    data={allSpecialists}
                     renderItem={renderSpecialistItem}
                     showsVerticalScrollIndicator={false}
                 />

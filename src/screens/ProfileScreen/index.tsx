@@ -10,12 +10,11 @@ export const ProfileScreen: FC<NativeStackScreenProps<RootStackParamList, RootSt
     navigation,
 }) => {
     const { item } = route.params;
-    const { avatar, about, name, experience, education, shortDescription } = item;
+    const { avatar, about, name, experience, education, shortDescription, id } = item;
 
     const addAdvicePress = () => {
         navigation.navigate(RootStackNavigationName.ASK, {
-            chat: { id: '1', messages: [] as IChatMessage[] },
-            item,
+            specialistId: id,
         });
     };
 
