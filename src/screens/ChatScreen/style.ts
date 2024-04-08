@@ -10,7 +10,28 @@ export const styles = StyleSheet.create({
     },
 
     wrapper: {
-        width: width - 28,
         marginTop: 10,
+    },
+    right: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        width: width * 0.9,
+        marginBottom: 10,
+        backgroundColor: theme.USER_BUBBLE_COLOR,
+        padding: 10,
+        borderTopRightRadius: 10,
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
+    },
+    left: {
+        width: width * 0.9,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        marginBottom: 10,
+        backgroundColor: theme.DIVIDER,
+        padding: 10,
+        borderTopRightRadius: 10,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
     },
 });

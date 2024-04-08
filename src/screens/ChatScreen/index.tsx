@@ -6,6 +6,8 @@ import { Button } from '~components/Button';
 import { useAppSelector } from '~store/store.ts';
 import { getAllChats } from '~store/selectors/getAllChats.ts';
 import { styles } from '~screens/ChatScreen/style.ts';
+import { width } from '~constants/dimensions.ts';
+import { theme } from '~constants/theme.ts';
 
 export const ChatScreen: FC<NativeStackScreenProps<RootStackParamList, RootStackNavigationName.CHAT>> = ({
     navigation,
@@ -27,14 +29,14 @@ export const ChatScreen: FC<NativeStackScreenProps<RootStackParamList, RootStack
                 {selectedChat?.messages.map((message, index) => {
                     if (message.direction === 'outgoing')
                         return (
-                            <Text style={{ textAlign: 'right' }} key={index}>
-                                {message.message}
-                            </Text>
+                            <View key={index} style={styles.right}>
+                                <Text>{message.message}</Text>
+                            </View>
                         );
                     return (
-                        <Text style={{ textAlign: 'left' }} key={index}>
-                            {message.message}
-                        </Text>
+                        <View key={index} style={styles.left}>
+                            <Text>{message.message}</Text>
+                        </View>
                     );
                 })}
             </ScrollView>
