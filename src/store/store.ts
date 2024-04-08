@@ -4,10 +4,12 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import specialistsReducer from './slices/specialistsSlice.ts';
 import answersReducer from './slices/answersSlice.ts';
+import chatsReducer from './slices/chatSlice.ts';
 
 const rootReducer = combineReducers({
     specialistsStore: specialistsReducer,
     answersStore: answersReducer,
+    chatsStore: chatsReducer,
 });
 
 export const store = configureStore({
